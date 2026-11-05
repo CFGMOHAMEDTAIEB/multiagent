@@ -4,6 +4,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from BACKEND.file_api import create_file_router
+from BACKEND.generated_api import create_generated_router
 from fastapi.responses import RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 
@@ -35,6 +36,7 @@ def create_app():
                 for name in SERVICES}
 
     application.include_router(create_file_router(SERVICES))
+    application.include_router(create_generated_router(SERVICES))
 
     for name, package in SERVICES.items():
         application.mount(f"/agents/{name}", import_module(f"{package}.main").app)
@@ -58,5 +60,6 @@ app = create_app()
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
 
 

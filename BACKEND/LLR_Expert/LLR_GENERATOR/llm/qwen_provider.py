@@ -11,9 +11,37 @@ class QwenProvider:
         payload = {"model": self.model, "messages": messages, "stream": False,
                    "options": {"temperature": 0.1}}
         if json_mode:
-            payload["format"] = Plan.model_json_schema()
+            schema = Plan.model_json_schema()
+            schema["anyOf"] = [
+                {"properties": {"action": {"const": "respond"}, "message": {"type": "string", "minLength": 1}}, "required": ["action", "message"]},
+                {"properties": {
+                    "action": {"const": "tool"},
+                    "tool_name": {"const": "read_document"},
+                    "tool_args": {"type": "object", "properties": {"path": {"type": "string"}}, "required": ["path"], "additionalProperties": False}
+                }, "required": ["action", "tool_name", "tool_args"]},
+                {"properties": {
+                    "action": {"const": "tool"},
+                    "tool_name": {"const": "list_documents"},
+                    "tool_args": {"type": "object", "properties": {"directory": {"type": "string"}}, "additionalProperties": False}
+                }, "required": ["action", "tool_name", "tool_args"]},
+            ]
+            payload["format"] = schema
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             response = await client.post(f"{self.url}/api/chat", json=payload)
-            response.raise_for_status()
+            if response.status_code == 400 and json_mode:
+                # Some Ollama builds reject compound JSON grammars.
+                error = response.text.lower()
+                if any(word in error for word in ("schema", "grammar", "format")):
+                    payload["format"] = Plan.model_json_schema()
+                    response = await client.post(f"{self.url}/api/chat", json=payload)
+            if response.is_error:
+                try:
+                    detail = response.json().get("error", "No error details")
+                except ValueError:
+                    detail = response.text
+                raise RuntimeError(f"Ollama returned {response.status_code}: {str(detail)[:500]}")
             return response.json()["message"]["content"]
+
+
+
 

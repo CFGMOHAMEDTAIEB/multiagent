@@ -2,6 +2,7 @@
 import { Activity, ArrowUpRight, Bot, CheckCircle2, Send, Layers3 } from 'lucide-react'
 import './AgentConsole.css'
 import { FilePanel, DownloadResponse } from './AgentFiles'
+import GeneratedFiles from './GeneratedFiles'
 
 type Service = { chat: string; docs: string }
 type Result = { answer: string; steps: Record<string, unknown>[] }
@@ -81,7 +82,7 @@ export default function AgentConsole() {
             {(entries[selected] || []).map((entry, index) => <article key={index}><div className="prompt"><small>YOUR REQUEST</small><pre>{entry.prompt}</pre></div>{entry.result && <div className="answer"><small>AGENT RESPONSE</small><pre>{entry.result.answer}</pre><DownloadResponse answer={entry.result.answer} agent={selected}/>{entry.result.steps.length > 0 && <details><summary>Tool activity ({entry.result.steps.length})</summary><pre>{JSON.stringify(entry.result.steps, null, 2)}</pre></details>}</div>}{entry.error && <p role="alert" className="error">{entry.error}</p>}</article>)}
             {pending[selected] && <p className="working" role="status">Agent is working with the local model…</p>}
           </div>
-          <form onSubmit={e => {e.preventDefault(); void submit()}}>
+          <GeneratedFiles key={selected + "-outputs"} agent={selected} sources={chosen[selected] || []} answer={[...(entries[selected] || [])].reverse().find(entry => entry.result)?.result?.answer}/><form onSubmit={e => {e.preventDefault(); void submit()}}>
             <label htmlFor="request">Request for {label(selected)}</label>
             <textarea id="request" maxLength={10000} rows={4} placeholder="Describe the task and include relevant context…" value={drafts[selected] || ''} onChange={e => setDrafts(d => ({...d, [selected]: e.target.value}))}/>
             <div className="composer-footer"><span>{(drafts[selected] || '').length}/10,000 characters</span><button type="submit" disabled={pending[selected] || !(drafts[selected] || '').trim()}><Send size={16}/>{pending[selected] ? 'Running…' : 'Send request'}</button></div>
@@ -91,4 +92,5 @@ export default function AgentConsole() {
     </main>
   </div>
 }
+
 

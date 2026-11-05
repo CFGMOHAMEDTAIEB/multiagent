@@ -49,3 +49,9 @@ The active React agent console loads all services from `/services` and calls the
 All specialist planners currently contain the same generic document-tool prompt. Domain-specific planning and automatic multi-agent workflow scheduling have not been implemented. The master entry point provides explicit service routing.
 
 "# multiagent" 
+
+## Agent files and response downloads
+
+The console's Agent documents section accepts UTF-8 TXT, Markdown, JSON and CSV files up to 1 MB each. Upload names are limited to 100 simple characters; a unique prefix prevents overwrites. Files persist in the selected service's documents directory and are not shared with other agents. Select up to three documents to include their paths in the next request. Tools read at most 16,000 characters per document.
+
+Use Download response to save the generated answer as TXT or Markdown, or as a JSON record containing the agent name and answer. Downloads are created in the browser; they do not write model-selected paths to the server. PDF, DOCX, XLSX and image extraction are not supported.
