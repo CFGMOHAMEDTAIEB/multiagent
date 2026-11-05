@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Multi-agent API",
+			"type": "shell",
+			"command": "C:\\Python314\\python.exe",
+			"args": [
+				"-m",
+				"uvicorn",
+				"master_orchestrator:app",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"8000"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

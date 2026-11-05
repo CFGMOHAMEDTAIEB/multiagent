@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#062c3b"><title>SX Aerospace — Engineering Platform</title><link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="#dashboard"><span class="brand-plane" aria-hidden="true">✈</span><strong>SX Aerospace</strong></a>
+  <button class="icon-button mobile-menu" data-action="toggle-menu" aria-label="Toggle navigation"><span data-icon="menu"></span></button>
+  <div class="context"><label for="project-select">Project</label><select id="project-select" aria-label="Current project"><option>default</option></select><button class="context-add" data-action="new-project" aria-label="Create project">+</button></div>
+  <div class="context"><label for="client-select">Client</label><select id="client-select" aria-label="Current client"><option>Loading…</option></select></div>
+  <div class="top-spacer"></div>
+  <label class="global-search"><span data-icon="search"></span><input id="global-search" placeholder="Search documents…" aria-label="Search project documents"><kbd>/</kbd></label>
+  <button class="icon-button notifications" data-action="notifications" aria-label="Notifications"><span data-icon="bell"></span><span id="notification-dot" class="notification-dot" hidden></span></button>
+</header>
+<aside class="sidebar" id="sidebar">
+  <nav aria-label="Main navigation" id="nav"></nav>
+  <div class="sidebar-bottom"><div class="service"><span class="status-dot"></span><span id="service-status">Ollama · Not checked</span><button data-action="discover" aria-label="Refresh Ollama status"><span data-icon="refresh"></span></button></div>
+    <div class="sidebar-client"><span>Client: <strong id="sidebar-client">—</strong></span><span data-icon="chevron-down"></span></div>
+    <button class="user-profile" data-action="profile"><span class="avatar" id="avatar">SX</span><span><strong id="reviewer-label">Local workspace</strong><small>Engineering team</small></span><span data-icon="chevron-down"></span></button>
+  </div>
+</aside>
+<main id="main" tabindex="-1"><div id="workflow-quickbar" aria-label="Workflow shortcuts"></div><div id="content"><div class="initial-loading"><span class="spinner"></span><p>Opening your engineering workspace…</p></div></div></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="dialog"><div id="dialog-content"></div></dialog>
+</body></html>

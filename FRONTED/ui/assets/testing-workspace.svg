@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="280" viewBox="0 0 780 280" role="img" aria-label="Documents become structured data and verified test cases">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e4f1f1"/><stop offset="1" stop-color="#edf5f5"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#185c68" flood-opacity=".09"/></filter></defs>
+<rect width="780" height="280" rx="22" fill="url(#bg)"/>
+<circle cx="110" cy="60" r="55" fill="#fff" opacity=".5"/><circle cx="695" cy="230" r="95" fill="#bdd9dd" opacity=".35"/>
+<path d="M225 140H320M460 140H555" stroke="#7fb1ba" stroke-width="3" stroke-dasharray="7 7"/>
+<g filter="url(#s)"><rect x="90" y="60" width="135" height="155" rx="16" fill="white"/><path d="M115 95h64m-64 20h86m-86 20h75m-75 20h83" stroke="#bdd9dd" stroke-width="7" stroke-linecap="round"/><rect x="112" y="176" width="70" height="19" rx="9" fill="#e4f1f1"/></g>
+<g filter="url(#s)"><rect x="320" y="60" width="140" height="155" rx="16" fill="#196e77"/><path d="M365 100q-15 0-15 15v13q0 12-10 12 10 0 10 12v13q0 15 15 15m50-80q15 0 15 15v13q0 12 10 12-10 0-10 12v13q0 15-15 15" stroke="#d5e9e9" stroke-width="5" fill="none"/><circle cx="378" cy="140" r="4" fill="white"/><circle cx="400" cy="140" r="4" fill="white"/></g>
+<g filter="url(#s)"><rect x="555" y="60" width="140" height="155" rx="16" fill="white"/><circle cx="580" cy="100" r="10" fill="#d1fae5"/><path d="m575 100 4 4 7-8" stroke="#059669" fill="none" stroke-width="2.5"/><circle cx="580" cy="140" r="10" fill="#d1fae5"/><path d="m575 140 4 4 7-8" stroke="#059669" fill="none" stroke-width="2.5"/><circle cx="580" cy="180" r="10" fill="#d5e9e9"/><path d="m575 180 4 4 7-8" stroke="#14858d" fill="none" stroke-width="2.5"/><path d="M604 100h65m-65 40h55m-55 40h61" stroke="#dce3f2" stroke-width="6" stroke-linecap="round"/></g>
+</svg>
